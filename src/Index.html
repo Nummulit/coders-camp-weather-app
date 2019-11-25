@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Portfolio</title>
+        <meta name="description" content="Aplikacja pogodowa">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge,chrome=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <style>
+        .sizeIcon
+        {
+            min-height: 40px; 
+            min-width: 40px; 
+            max-height: 50px; 
+            max-width: 50px;
+        }
+        .diveHeight
+        {
+            height: 100px;
+        }
+        .searchSize
+        {
+            height: 15px;
+            width: 15px;
+        }
+        .list 
+        {
+            list-style-type:none;
+            margin: 0%;
+            padding: 0%;
+        }
+        .list > li > ul
+        {
+            list-style-type:none;
+            margin: 0%;
+            padding: 0%;
+            display: none;
+            font-size: 10px;
+        }
+        .list:hover >li:hover >ul
+        {
+            display: block;
+        }
+        .list > li > ul > li
+        {
+            font-size: 10px;
+            padding: 5px;
+
+            margin: 5px;
+        }
+
+        .inputs
+        {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+    </style>
+    <body>
+            
+        <section>
+            <div class="container"> 
+                <div class="row">
+                    <div class="col-12 bg-light">
+                        <ol class="list">
+                            <li>
+                                <a href="">rozwin mnie</a>
+                                <ul class="col-6">
+                                    <li>                                                                               <!--Odswiezanie strony i szukanie miasta--> <!--class innerText służy do wprowadzenia miasta -->
+                                        <input type="text" class="inputs col-8 col-sm-6 innerText"> <button type="button" onClick="location.reload()" class="inputs btn-light fluid col-3 sumbit"><img src="assets/chmura1.svg" alt="icon"  class="searchSize img-fluid icon1"></button>
+                                    </li>
+                                    <li>
+                                    	<fieldset>
+                                            <p>Stopnie Fahrenheit</p><input type="radio" name="degree" class="degreeFahrenheit" >       <!--Zamiana stopni-->
+                                        </fieldset>
+                                    </li>  
+                                    <li>
+                                            <fieldset>           
+                                                <p>Stopnie Celsjusza</p> <input type="radio" checked name="degree" class="degreeCelsius">
+                                            </fieldset>
+                                        </li>   
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+
+
+                <div class="row text-center border-bottom toDay">
+                    <div class="col-12 city">Wroclaw</div>              <!--class city pojawi się wpisane miasto -->
+                    <div class="col-12 mt-3 temp"><h1>15&deg;</h1></div>                   <!--class temp pojawia się temperatura w danym miescie -->
+                    <div class="col-12 stateWeather"><h4>Pochmurno</h4></div>    <!--class stateWeather mówi czy jest pochmurno, czy pada itd -->
+                </div>
+                <div class="row text-center mt-3  border-bottom toDayHoures">
+                    <div class="col-2 col-sm-4 hourWeather1"><h5>11<h5> <img src="assets/chmura1.svg" alt="icon" class="sizeIcon img-fluid icon1"><p>5&deg;</p></div>  <!--class hourWeather pobranie aktualnej godziny class img ikona-->
+                    <div class="col-2 col-sm-4 hourWeather2"><h5>12<h5> <img src="assets/chmura1.svg" alt="icon" class="sizeIcon img-fluid icon2"><p>5&deg;</p></div>  <!--jaki stan pogody klasy są ponumerowane od 1 jeśli lepsze będą bez numerów dajcie znać-->
+                    <div class="col-2 col-sm-4 hourWeather3"><h5>13<h5> <img src="assets/chmura1.svg" alt="icon" class="sizeIcon img-fluid icon3"><p>5&deg;</p></div>
+                    <div class="col-2 col-sm-4 hourWeather4"><h5>14<h5> <img src="assets/chmura1.svg" alt="icon" class="sizeIcon img-fluid icon4"><p>5&deg;</p></div>
+                    <div class="col-2 col-sm-4 hourWeather5"><h5>15<h5> <img src="assets/chmura1.svg" alt="icon" class="sizeIcon img-fluid icon5"><p>5&deg;</p></div>
+                    <div class="col-2 col-sm-4 hourWeather6"><h5>16<h5> <img src="assets/chmura1.svg" alt="icon" class="sizeIcon img-fluid icon6"><p>5&deg;</p></div>
+                </div>
+                <div class="row my-1  fewDays">                                                                                                                                      
+                    <div class="d-flex align-items-center justify-content-between col-12  mh-100  border-bottom align my-1" ><!-- class few day pogoda na kilka dni-->
+                            <p class="day2  icon sizeIcon"> sroda </p >
+                            <img src="assets/chmura1.svg" alt="" class="img-fluid icon sizeIcon icon sizeIcon" >                   <!--klasy day1...day4 stateWeather1...stateweather4 temp1...temp4 i icon-->
+                            <p class="stateWeather2  icon sizeIcon">pochmurno</p>                                           <!--Day dzien tygodnia stateWEather stan pogody icon icona która symbolizuje stan pogody temp temperatura-->
+                            <p class="temp2  icon sizeIcon">10&deg;</p> 
+                        </div>
+                    <div class="d-flex align-items-center justify-content-between col-12  mh-100  border-bottom align my-1" >
+                        <p class="day2  icon sizeIcon"> sroda </p >
+                        <img src="assets/chmura1.svg" alt="" class="img-fluid icon sizeIcon icon sizeIcon" >
+                        <p class="stateWeather2  icon sizeIcon">pochmurno</p>
+                        <p class="temp2  icon sizeIcon">10&deg;</p> 
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between col-12  mh-100  border-bottom my-1">
+                        <p class="day3 icon sizeIcon"> sroda </p >
+                        <img src="assets/chmura1.svg" alt="" class="img-fluid icon sizeIcon icon sizeIcon" >
+                        <p class="stateWeather3  icon sizeIcon">pochmurno</p>
+                        <p class="temp3 icon sizeIcon">10&deg;</p> 
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between col-12  mh-100  border-bottom my-1" >
+                        <p class="day4  icon sizeIcon"> sroda </p >
+                        <img src="assets/chmura1.svg" alt="" class="img-fluid icon sizeIcon icon sizeIcon" >
+                        <p class="stateWeather4  icon sizeIcon">pochmurno</p>
+                        <p class="temp4  icon sizeIcon">10&deg;</p> 
+                    </div>
+                </div>
+                <div class="row my-2 border-bottom divHeight wind">
+                    <h4 class="col-12 text-center">Wiatr</h4>
+                    <div class="d-flex align-items-center justify-content-around col-12  divHeight">
+                        <img src="assets/windmill.svg" alt="wind pic" class="img-fluid sizeIcon "/>
+                        <h5 class=" windSpeed">15 km/h</h5>
+                    </div>
+                </div>
+                <div class="row my-2 text-center sunRise">
+                    <div class="col-12 d-flex text-center">
+                        <div class="col-6 p-1 sunRiseWakeUp">7:50</div>
+                        <div class="col-6 p-1 sunRiseSleep">2:56</div>
+                    </div>
+                    <h5 class="col-12 text-center mt-2">Wschód i Zachód słońca</h5>
+                </div>
+            </div>
+        </section>
+            
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+
+
+</html>
