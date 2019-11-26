@@ -49,12 +49,11 @@ const fiveDaysForecast = [
 const currentWeatherTemplate = document.querySelector('#current-weather');
 const currenWeatherContainer = document.querySelector('.today');
 
-const threeHoursWeatherTemplate = document.querySelector('#three-hour-weather');
-const threeHoursWeatherContainer = document.querySelector('.toDayHoures');
+const threeHoursWeatherTemplate = document.querySelector('#three-hours-weather');
+const threeHoursWeatherContainer = document.querySelector('.today-hours');
 
 const weatherForFewDaysTemplate = document.querySelector('#weather-for-the-day');
 const weatherForFewDaysContainer = document.querySelector('.few-days');
-
 
 // First letter to uppercase function
 function jsUcfirst(string) 
@@ -63,26 +62,29 @@ function jsUcfirst(string)
 }
 
 
-// Clone template from html, generate current weather html and append it to
+
+// Clone template from html, generate current weather and wind html and append it to
 // current weather container in html
 function currentWeatherWrapper(cityName, currentTemp, currentWeatherDescription) {
   const currentWeatherHtml = document.importNode(currentWeatherTemplate.content, true);
   currentWeatherHtml.querySelector('.city').textContent = cityName;
-  currentWeatherHtml.querySelector('.temp').textContent = currentTemp;
+  currentWeatherHtml.querySelector('.temp').textContent = Math.floor(currentTemp - 273.15) + ' °C';
   currentWeatherHtml.querySelector('.state-weather').textContent = jsUcfirst(currentWeatherDescription);
+  currentWeatherHtml.querySelector('.wind-speed').textContent = `${currentWindSpeed} m/s`;
 
   return currentWeatherHtml;
 }
 currenWeatherContainer.appendChild(currentWeatherWrapper(cityName, currentTemp, currentWeatherDescription));
 
 
+
 // Clone template from html, generate weather every three hour to html 
 function forecastToHtml(forecast) {
   const threeHoursWeatherHtml = document.importNode(threeHoursWeatherTemplate.content, true);
   const forecastDate = new Date(forecast.date);
-  threeHoursWeatherHtml.querySelector('.hour').textContent = jsUcfirst(forecastDate.toLocaleDateString("pl",{weekday: "short"})) + " " + forecastDate.toLocaleTimeString('pl',{minute: '2-digit', hour: '2-digit'});
-  threeHoursWeatherHtml.querySelector('.sizeIcon').src = `//openweathermap.org/img/wn/${forecast.icon}@2x.png`;
-  threeHoursWeatherHtml.querySelector('.temp').textContent = forecast.temperatura;
+  threeHoursWeatherHtml.querySelector('.hour').textContent = jsUcfirst(forecastDate.toLocaleDateString('pl',{weekday: 'short'})) + ' ' + forecastDate.toLocaleTimeString('pl',{minute: '2-digit', hour: '2-digit'});
+  threeHoursWeatherHtml.querySelector('.icon').src = `//openweathermap.org/img/wn/${forecast.icon}@2x.png`;
+  threeHoursWeatherHtml.querySelector('.temp').textContent = Math.floor(forecast.temperatura - 273.15) + ' °C';
   return threeHoursWeatherHtml;
 }
 // Map method on forecasts
@@ -103,21 +105,20 @@ forecastsToHtml(fiveDaysForecast.slice(0, 6)).forEach(html=>{
 function weatherForFewDaysWrapper(fiveDaysForecast) {
   for (let i = 0; i <= 3; i++){
     const weatherForFewDaysHtml = document.importNode(weatherForFewDaysTemplate.content, true);
-    // TODO: Pomocnicza funkcja ktora wyciaga tylko godzine z daty!
-    weatherForFewDaysHtml.querySelector('.day').textContent = fiveDaysForecast[i].date;
+    const day = new Date(fiveDaysForecast[i].date);
+    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    weatherForFewDaysHtml.querySelector('.day').innerHTML = days[day.getDay()];
     weatherForFewDaysHtml.querySelector('.day-icon').src = `//openweathermap.org/img/wn/${fiveDaysForecast[i].icon}@2x.png`;
     weatherForFewDaysHtml.querySelector('.day-desc').textContent = fiveDaysForecast[i].description;
-    weatherForFewDaysHtml.querySelector('.day-temp').textContent = fiveDaysForecast[i].temperatura;
+    weatherForFewDaysHtml.querySelector('.day-temp').textContent = Math.floor(fiveDaysForecast[i].temperatura - 273.15) + ' °C';
 
     weatherForFewDaysContainer.appendChild(weatherForFewDaysHtml);
   }
 }
 weatherForFewDaysWrapper(fiveDaysForecast);
 
-//  TODO:
-//  ask about temp unit
-//  talk about styles
-//  change html class names
 
+
+//  TODO:
 // zawartosc petli for wydzielic do osobnej funkcji (funkcja ktora mapuje pojedynczy item arraya)
 // nastepnie ta funkcje bede wywolywal w metodzie map jak w funkcji wyzej = refactor

@@ -13,46 +13,52 @@
   <body>
           
     <section>
-      <div class="container">  
+      <div class="container">
         <div class="row text-center border-bottom today">
           <div class="column-12 col-sm-12 buttons mt-3">
-            <input type="text" class="innerText"> <button type="button" class="sumbit"></button>
+            <input type="text"> <button type="button" class="sumbit"></button>
           </div>
 
-          <!-- First template - current weather-->
+          <!-- First template - current weather and wind-->
           <template id="current-weather">
             <div class="col-12 city"></div>
             <div class="col-12 mt-3 temp"><h1></h1></div>                   
             <div class="col-12 state-weather"><h4></h4></div>
+            <h4 class="col-12 text-center">Wiatr</h4>
+            <div class="align-items-center justify-content-around col-12">
+              <h5 class=" wind-speed"></h5>
+            </div>
           </template>
         </div>
 
 
-        <!-- Wind section -->
-        <div class="row my-2 border-bottom divHeight wind">
-          <h4 class="col-12 text-center">Wiatr</h4>
-          <div class="d-flex align-items-center justify-content-around col-12  divHeight">
-              <h5 class=" windSpeed">15 km/h</h5>
+        <!-- Wind section
+        <template id="wind-section">
+          <div class="row my-2 border-bottom wind">
+            
           </div>
-        </div>
+        </template> -->
 
-
-        <div class="row text-center mt-3  border-bottom toDayHoures">
+        <div class="row text-center mt-3 border-bottom today-hours">
           <!-- Second template - weather every three hours-->
-          <template id ="three-hour-weather">
-            <div class="col-2 col-sm-4 hourWeather"><h5 class="hour"><h5> <img src="img/chmura1.svg" alt="icon" class="sizeIcon"><p class="temp"></p></div>
-            </template>
+          <template id ="three-hours-weather">
+            <div class="col-2 col-sm-4 hour-weather">
+              <h5 class="hour"><h5>
+              <img src="img/chmura1.svg" alt="icon" class="icon">
+              <p class="temp"></p>
+            </div>
+          </template>
         </div>
 
 
-        <div class="row my-1  few-days"> 
+        <div class="row my-1 few-days">
           <!-- Third template - weather for the day-->
           <template id="weather-for-the-day">
-          <div class="d-flex align-items-center justify-content-between col-12  mh-100  border-bottom align my-1 weather-for-days">
-              <p class="day2  icon sizeIcon day"></p>
-              <img src="img/chmura1.svg" alt="" class="day-icon" >
-              <p class="stateWeather2  icon sizeIcon day-desc"></p>    
-              <p class="temp2  icon sizeIcon day-temp"></p> 
+          <div class="d-flex align-items-center justify-content-between col-12 mh-100 border-bottom align my-1 weather-for-days">
+              <p class="day"></p>
+              <img src="img/chmura1.svg" alt="forecast icon" class="day-icon" >
+              <p class="day-desc"></p>    
+              <p class="day-temp"></p> 
             </div>
           </template>
         </div>
