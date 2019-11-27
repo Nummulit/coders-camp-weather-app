@@ -47,7 +47,7 @@ const fiveDaysForecast = [
 
 // Global variables
 const currentWeatherTemplate = document.querySelector('#current-weather');
-const currenWeatherContainer = document.querySelector('.today');
+const currentWeatherContainer = document.querySelector('.today');
 
 const threeHoursWeatherTemplate = document.querySelector('#three-hours-weather');
 const threeHoursWeatherContainer = document.querySelector('.today-hours');
@@ -65,7 +65,7 @@ function jsUcfirst(string)
 
 // Clone template from html, generate current weather and wind html and append it to
 // current weather container in html
-function currentWeatherWrapper(cityName, currentTemp, currentWeatherDescription) {
+function currentWeatherToHtml(cityName, currentTemp, currentWeatherDescription) {
   const currentWeatherHtml = document.importNode(currentWeatherTemplate.content, true);
   currentWeatherHtml.querySelector('.city').textContent = cityName;
   currentWeatherHtml.querySelector('.temp').textContent = Math.floor(currentTemp - 273.15) + ' °C';
@@ -74,7 +74,7 @@ function currentWeatherWrapper(cityName, currentTemp, currentWeatherDescription)
 
   return currentWeatherHtml;
 }
-currenWeatherContainer.appendChild(currentWeatherWrapper(cityName, currentTemp, currentWeatherDescription));
+currentWeatherContainer.appendChild(currentWeatherToHtml(cityName, currentTemp, currentWeatherDescription));
 
 
 
@@ -82,9 +82,11 @@ currenWeatherContainer.appendChild(currentWeatherWrapper(cityName, currentTemp, 
 function forecastToHtml(forecast) {
   const threeHoursWeatherHtml = document.importNode(threeHoursWeatherTemplate.content, true);
   const forecastDate = new Date(forecast.date);
-  threeHoursWeatherHtml.querySelector('.hour').textContent = jsUcfirst(forecastDate.toLocaleDateString('pl',{weekday: 'short'})) + ' ' + forecastDate.toLocaleTimeString('pl',{minute: '2-digit', hour: '2-digit'});
+  threeHoursWeatherHtml.querySelector('.hour').textContent = jsUcfirst(forecastDate.toLocaleDateString(
+      'pl',{weekday: 'short'})) + ' ' + forecastDate.toLocaleTimeString('pl',{minute: '2-digit', hour: '2-digit'});
   threeHoursWeatherHtml.querySelector('.icon').src = `//openweathermap.org/img/wn/${forecast.icon}@2x.png`;
   threeHoursWeatherHtml.querySelector('.temp').textContent = Math.floor(forecast.temperatura - 273.15) + ' °C';
+
   return threeHoursWeatherHtml;
 }
 // Map method on forecasts
@@ -92,33 +94,29 @@ function forecastsToHtml(forecasts) {
   return forecasts.map(forecast => forecastToHtml(forecast));
 }
 // Function call on first six elements and append all forecasts to container
-forecastsToHtml(fiveDaysForecast.slice(0, 6)).forEach(html=>{
+forecastsToHtml(fiveDaysForecast.slice(0, 6)).forEach(html => {
   threeHoursWeatherContainer.appendChild(html);
 });
 
 
 
-// TODO \/\/\/\/\/ REFACTOR
-
-// Clone template from html, generate weather for the few days html and append it to
-// weather for the few days container in html
-function weatherForFewDaysWrapper(fiveDaysForecast) {
-  for (let i = 0; i <= 3; i++){
+// Cloning template from html and generate weather 1 day forecast to html
+function weatherForFewDaysToHtml(forecast) {
     const weatherForFewDaysHtml = document.importNode(weatherForFewDaysTemplate.content, true);
-    const day = new Date(fiveDaysForecast[i].date);
+    const day = new Date(forecast.date);
     const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     weatherForFewDaysHtml.querySelector('.day').innerHTML = days[day.getDay()];
-    weatherForFewDaysHtml.querySelector('.day-icon').src = `//openweathermap.org/img/wn/${fiveDaysForecast[i].icon}@2x.png`;
-    weatherForFewDaysHtml.querySelector('.day-desc').textContent = fiveDaysForecast[i].description;
-    weatherForFewDaysHtml.querySelector('.day-temp').textContent = Math.floor(fiveDaysForecast[i].temperatura - 273.15) + ' °C';
-
-    weatherForFewDaysContainer.appendChild(weatherForFewDaysHtml);
-  }
+    weatherForFewDaysHtml.querySelector('.day-icon').src = `//openweathermap.org/img/wn/${forecast.icon}@2x.png`;
+    weatherForFewDaysHtml.querySelector('.day-desc').textContent = forecast.description;
+    weatherForFewDaysHtml.querySelector('.day-temp').textContent = Math.floor(forecast.temperatura - 273.15) + ' °C';
+    
+    return weatherForFewDaysHtml;
 }
-weatherForFewDaysWrapper(fiveDaysForecast);
-
-
-
-//  TODO:
-// zawartosc petli for wydzielic do osobnej funkcji (funkcja ktora mapuje pojedynczy item arraya)
-// nastepnie ta funkcje bede wywolywal w metodzie map jak w funkcji wyzej = refactor
+// Map method on forecasts
+function weathersForFewDaysToHtml(forecasts) {
+  return forecasts.map(forecast => weatherForFewDaysToHtml(forecast));
+}
+// Function call and apend all days to container
+weathersForFewDaysToHtml(fiveDaysForecast).forEach(html =>{
+  weatherForFewDaysContainer.appendChild(html);
+});
