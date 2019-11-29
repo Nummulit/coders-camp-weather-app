@@ -1,44 +1,46 @@
 // Fake API data for testing
-let cityName = "Berlin",
-  currentTemp = 286.67,
-  currentWindSpeed = 1.81,
-  currentWeatherDescription = "clear sky",
-  currentWeatherIcon = "01d";
+let currentWeather = {
+  cityName: 'Berlin',
+  temperature: 286.67,
+  windSpeed: 1.81,
+  description: 'clear sky',
+  icon: '01d'
+}
 
 const fiveDaysForecast = [
   {
     date: '2017-02-16 12:00:00',
-    temperatura: 286.67,
+    temperature: 286.67,
     windSpeed: 1.81,
     icon: '01d',
     description: 'broken clouds'
   },{
     date: '2017-02-16 15:00:00',
-    temperatura: 286.67,
+    temperature: 286.67,
     windSpeed: 1.81,
     icon: '02d',
     description: 'clear sky'
   },{
     date: '2017-02-16 18:00:00',
-    temperatura: 286.67,
+    temperature: 286.67,
     windSpeed: 1.81,
     icon: '03d',
     description: 'broken clouds'
   },{
     date: '2017-02-16 21:00:00',
-    temperatura: 286.67,
+    temperature: 286.67,
     windSpeed: 1.81,
     icon: '10d',
     description: 'broken clouds'
   },{
-    date: '2017-02-16 24:00:00',
-    temperatura: 286.67,
+    date: '2017-02-16 00:00:00',
+    temperature: 286.67,
     windSpeed: 1.81,
     icon: '11d',
     description: 'broken clouds'
   },{
     date: '2017-02-16 03:00:00',
-    temperatura: 286.67,
+    temperature: 286.67,
     windSpeed: 1.81,
     icon: '13d',
     description: 'broken clouds'
@@ -63,18 +65,18 @@ function jsUcfirst(string)
 
 
 
-// Clone template from html, generate current weather and wind html and append it to
-// current weather container in html
-function currentWeatherToHtml(cityName, currentTemp, currentWeatherDescription) {
+// Clone template from html, generate current weather and wind to html
+function currentWeatherToHtml(forecast) {
   const currentWeatherHtml = document.importNode(currentWeatherTemplate.content, true);
-  currentWeatherHtml.querySelector('.city').textContent = cityName;
-  currentWeatherHtml.querySelector('.temp').textContent = Math.floor(currentTemp - 273.15) + ' °C';
-  currentWeatherHtml.querySelector('.state-weather').textContent = jsUcfirst(currentWeatherDescription);
-  currentWeatherHtml.querySelector('.wind-speed').textContent = `${currentWindSpeed} m/s`;
+  currentWeatherHtml.querySelector('.city').textContent = forecast.cityName;
+  currentWeatherHtml.querySelector('.temp').textContent = Math.floor(forecast.temperature - 273.15) + ' °C';
+  currentWeatherHtml.querySelector('.state-weather').textContent = jsUcfirst(forecast.description);
+  currentWeatherHtml.querySelector('.wind-speed').textContent = `${forecast.windSpeed} m/s`;
 
   return currentWeatherHtml;
 }
-currentWeatherContainer.appendChild(currentWeatherToHtml(cityName, currentTemp, currentWeatherDescription));
+// Append current weather to container
+currentWeatherContainer.appendChild(currentWeatherToHtml(currentWeather));
 
 
 
@@ -85,7 +87,7 @@ function forecastToHtml(forecast) {
   threeHoursWeatherHtml.querySelector('.hour').textContent = jsUcfirst(forecastDate.toLocaleDateString(
       'pl',{weekday: 'short'})) + ' ' + forecastDate.toLocaleTimeString('pl',{minute: '2-digit', hour: '2-digit'});
   threeHoursWeatherHtml.querySelector('.icon').src = `//openweathermap.org/img/wn/${forecast.icon}@2x.png`;
-  threeHoursWeatherHtml.querySelector('.temp').textContent = Math.floor(forecast.temperatura - 273.15) + ' °C';
+  threeHoursWeatherHtml.querySelector('.temp').textContent = Math.floor(forecast.temperature - 273.15) + ' °C';
 
   return threeHoursWeatherHtml;
 }
@@ -94,9 +96,7 @@ function forecastsToHtml(forecasts) {
   return forecasts.map(forecast => forecastToHtml(forecast));
 }
 // Function call on first six elements and append all forecasts to container
-forecastsToHtml(fiveDaysForecast.slice(0, 6)).forEach(html => {
-  threeHoursWeatherContainer.appendChild(html);
-});
+threeHoursWeatherContainer.append(...forecastsToHtml(fiveDaysForecast.slice(0, 6)));
 
 
 
@@ -108,7 +108,7 @@ function weatherForFewDaysToHtml(forecast) {
     weatherForFewDaysHtml.querySelector('.day').innerHTML = days[day.getDay()];
     weatherForFewDaysHtml.querySelector('.day-icon').src = `//openweathermap.org/img/wn/${forecast.icon}@2x.png`;
     weatherForFewDaysHtml.querySelector('.day-desc').textContent = forecast.description;
-    weatherForFewDaysHtml.querySelector('.day-temp').textContent = Math.floor(forecast.temperatura - 273.15) + ' °C';
+    weatherForFewDaysHtml.querySelector('.day-temp').textContent = Math.floor(forecast.temperature - 273.15) + ' °C';
     
     return weatherForFewDaysHtml;
 }
@@ -117,6 +117,4 @@ function weathersForFewDaysToHtml(forecasts) {
   return forecasts.map(forecast => weatherForFewDaysToHtml(forecast));
 }
 // Function call and apend all days to container
-weathersForFewDaysToHtml(fiveDaysForecast).forEach(html =>{
-  weatherForFewDaysContainer.appendChild(html);
-});
+weatherForFewDaysContainer.append(...weathersForFewDaysToHtml(fiveDaysForecast));
