@@ -13,7 +13,7 @@ async function findCities(text) {
   const url = `http://api.geonames.org/searchJSON?
       username=${userName}&
       maxRows=10&
-      style=short&
+      style=full&
       country=pl&
       name_startsWith=${text}&
       orderby=population`.replace(/\s/g, '');  // Removes any whitespace
@@ -35,7 +35,6 @@ async function findCities(text) {
 async function displayCities(listNode, text) {
   let cities = await findCities(text);
   for (city of cities) {
-    console.log(city);
     listNode.innerHTML += `
       <li>
         <span class="city-name">${city.name}</span>
