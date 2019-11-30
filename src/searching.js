@@ -32,15 +32,20 @@ async function findCities(text) {
 
 
 // Calls findCities with provided text and appends the results to the provided listNode.
-async function displayCities(listNode, text) {
+async function displayCities(listNode, text, searchField) {
   let cities = await findCities(text);
   for (city of cities) {
-    listNode.innerHTML += `
-      <li>
-        <span class="city-name">${city.name}</span>
-        <span class="country-code">${city.countryCode}</span>
-      </li>
-    `
+    let li = document.createElement('li');
+    li.innerHTML = `
+<span class="city-name">${city.name}</span>
+ <span class="country-code">${city.countryCode}</span>
+ <span class="lat">${city.lat}</span>
+ <span class="lon">${city.lon}</span>
+    `;
+    li.addEventListener('click', (event) => {
+      searchField.value = li.textContent;
+    });
+    listNode.appendChild(li);
   }
 }
 
@@ -52,7 +57,7 @@ function clearCities(listNode) {
 
 citySearchField.addEventListener('input', el => {
   clearCities(searchResults);
-  displayCities(searchResults, el.target.value);
+  displayCities(searchResults, el.target.value, citySearchField);
 });
 
 document.body.addEventListener('keyup', (event) => {
