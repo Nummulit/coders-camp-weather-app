@@ -2,9 +2,9 @@
 const userName = 'edud';
 
 // Field for searching the cities
-const citySearchField = document.getElementById('city-search-field');
+const citySearchField = document.querySelector('.form-control');
 // <ul> for displaying the results
-const searchResults = document.getElementById('search-results');
+const searchResults = document.querySelector('.suggestions');
 
 
 // Looks for all cities in geonames.org starting with specified `text`.
