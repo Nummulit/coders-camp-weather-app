@@ -84,8 +84,8 @@ currentWeatherContainer.appendChild(currentWeatherToHtml(currentWeather));
 function forecastToHtml(forecast) {
   const threeHoursWeatherHtml = document.importNode(threeHoursWeatherTemplate.content, true);
   const forecastDate = new Date(forecast.date);
-  threeHoursWeatherHtml.querySelector('.hour').textContent = jsUcfirst(forecastDate.toLocaleDateString(
-      'pl',{weekday: 'short'})) + ' ' + forecastDate.toLocaleTimeString('pl',{minute: '2-digit', hour: '2-digit'});
+  threeHoursWeatherHtml.querySelector('.hour').textContent = /*jsUcfirst(forecastDate.toLocaleDateString(
+      'pl',{weekday: 'short'})) + ' ' +*/ forecastDate.toLocaleTimeString('pl',{minute: '2-digit', hour: '2-digit'});
   threeHoursWeatherHtml.querySelector('.icon').src = `//openweathermap.org/img/wn/${forecast.icon}@2x.png`;
   threeHoursWeatherHtml.querySelector('.temp').textContent = Math.floor(forecast.temperature - 273.15) + '°';
 
