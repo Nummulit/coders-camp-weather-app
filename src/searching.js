@@ -5,7 +5,10 @@ const userName = 'edud';
 const citySearchField = document.querySelector('.form-control');
 // <ul> for displaying the results
 const searchResults = document.querySelector('.suggestions');
-
+// Submit Button
+const submitBtn = document.querySelector('.button');
+// Currently selected city
+let currentCity = '';
 
 // Looks for all cities in geonames.org starting with specified `text`.
 // Returns a Promise.
@@ -55,9 +58,13 @@ function clearCities(listNode) {
 }
 
 
-citySearchField.addEventListener('input', el => {
+citySearchField.addEventListener('input', event => {
   clearCities(searchResults);
-  displayCities(searchResults, el.target.value, citySearchField);
+  displayCities(searchResults, event.target.value, citySearchField);
+});
+
+submitBtn.addEventListener('click', event => {
+  currentCity = citySearchField.value;
 });
 
 document.body.addEventListener('keyup', (event) => {
