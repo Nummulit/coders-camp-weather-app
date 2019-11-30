@@ -108,7 +108,7 @@ function weatherForFewDaysToHtml(forecast) {
     weatherForFewDaysHtml.querySelector('.day').innerHTML = days[day.getDay()];
     weatherForFewDaysHtml.querySelector('.day-icon').src = `//openweathermap.org/img/wn/${forecast.icon}@2x.png`;
     weatherForFewDaysHtml.querySelector('.day-desc').textContent = forecast.description;
-    weatherForFewDaysHtml.querySelector('.day-temp').textContent = Math.floor(forecast.temperature - 273.15) + ' °C';
+    weatherForFewDaysHtml.querySelector('.day-temp').textContent = Math.floor(forecast.temperature - 273.15) + '°';
     
     return weatherForFewDaysHtml;
 }
