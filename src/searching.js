@@ -7,8 +7,15 @@ const citySearchField = document.querySelector('.form-control');
 const searchResults = document.querySelector('.suggestions');
 // Submit Button
 const submitBtn = document.querySelector('.button');
+
 // Currently selected city
-let currentCity = '';
+let currentCity = {
+  name: '',
+  country: '',
+  lat: 0,
+  lon: 0,
+  timezone: 0
+};
 
 // Looks for all cities in geonames.org starting with specified `text`.
 // Returns a Promise.
@@ -27,7 +34,8 @@ async function findCities(text) {
       name: el.name,
       countryCode : el.countryCode,
       lat: parseFloat(el.lat),
-      lon: parseFloat(el.lng)
+      lon: parseFloat(el.lng),
+      timezone: parseFloat(el.timezone.gmtOffset)
     }
   });
   return cities;
@@ -44,6 +52,7 @@ async function displayCities(listNode, text, searchField) {
  <span class="country-code">${city.countryCode}</span>
  <span class="lat">${city.lat}</span>
  <span class="lon">${city.lon}</span>
+ <span class="timezone">${city.timezone}</span>
     `;
     li.addEventListener('click', (event) => {
       searchField.value = li.textContent;
@@ -57,16 +66,36 @@ function clearCities(listNode) {
   listNode.innerHTML = '';
 }
 
-
+// Listening for input.
 citySearchField.addEventListener('input', event => {
   clearCities(searchResults);
   displayCities(searchResults, event.target.value, citySearchField);
 });
 
+// Listening for submit.
 submitBtn.addEventListener('click', event => {
-  currentCity = citySearchField.value;
+  currentCityStr = citySearchField.value;
+
+  // Extract values from the city string.
+  currentCity.name = currentCityStr.split(" ")[0];
+  currentCity.contry = currentCityStr.split(" ")[1];
+  currentCity.lat = parseFloat(currentCityStr.split(" ")[2]);
+  currentCity.lon = parseFloat(currentCityStr.split(" ")[3]);
+  currentCity.timezone = parseInt(currentCityStr.split(" ")[4]);
+
+  // Here we can call the weather API and reload the data.
+  console.log(currentCity);  // Logging only for testing.
 });
 
+
+// Hide the suggestions box after pressing the Escape key.
 document.body.addEventListener('keyup', (event) => {
   if (event.code === "Escape") clearCities(searchResults);
+});
+
+// Hide the suggestions box after pressing anywhere outside the suggestions box.
+document.body.addEventListener('click', (event) => {
+  if (!searchResults.contains(event.target)) {
+    clearCities(searchResults);
+  }
 });
