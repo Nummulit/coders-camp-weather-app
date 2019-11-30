@@ -1,16 +1,16 @@
-let fiveDaysForecast = [],
-  currentTimeInCity = "";
+let fiveDaysForecast = [];
 const currentWeather = {
   cityName: "",
   temperature: "",
   windSpeed: "",
   description: "",
-  icon: ""
+  icon: "",
+  currentTimeInCity: ""
 };
 const currentDayForecast = [];
 const corsAnywhereUrl = "https://cors-anywhere.herokuapp.com/";
 
-function fiveDayThreeHourForecastData(lat, lon, timezone) {
+function fiveDayThreeHourForecastData(lat, lon) {
   const apiUrl = `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=e9c5c4f3beac305dd98167aca8dcc85b`;
   const url = corsAnywhereUrl + apiUrl;
 
@@ -48,8 +48,8 @@ function fiveDayThreeHourForecastData(lat, lon, timezone) {
 
       const date = new Date();
       date.getTime();
-      date.setUTCSeconds(timezone);
-      currentTimeInCity = date.toUTCString();
+      date.setUTCSeconds(resp.city.timezone);
+      currentWeather.currentTimeInCity = date.toUTCString();
 
       fiveDaysForecast = [];
       resp.list.forEach(weather => {
@@ -71,11 +71,10 @@ function fiveDayThreeHourForecastData(lat, lon, timezone) {
 }
 
 function myLocation() {
-  navigator.geolocation.getCurrentPosition(function(position) {
+  navigator.geolocation.getCurrentPosition(function (position) {
     fiveDayThreeHourForecastData(
       position.coords.latitude,
-      position.coords.longitude,
-      timezone
+      position.coords.longitude
     );
   });
 }
