@@ -1,0 +1,23 @@
+    html{
+      overflow-x: hidden;
+    }
+    
+    body{
+      background-image: linear-gradient(to right,#005aa7 , #00b4db);
+    }
+    .day-desc,.day-temp,.temp{
+      white-space: nowrap;
+    }
+    .weather-for-days *
+    {
+      margin: 5px;
+    }
+    .btn{
+      padding: 3px;
+     
+    }
+    .button:hover{
+      cursor: pointer;
+      background-color: #fafafa;
+    }
+    
