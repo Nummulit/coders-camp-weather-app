@@ -54,3 +54,7 @@ citySearchField.addEventListener('input', el => {
   clearCities(searchResults);
   displayCities(searchResults, el.target.value);
 });
+
+document.body.addEventListener('keyup', (event) => {
+  if (event.code === "Escape") clearCities(searchResults);
+});
