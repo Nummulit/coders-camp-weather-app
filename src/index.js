@@ -17,8 +17,6 @@ function fiveDayThreeHourForecastData(lat, lon) {
   fetch(url)
     .then(resp => resp.json())
     .then(resp => {
-      console.log(resp);
-      console.log(resp.list[0].dt);
       currentWeather.cityName = resp.city.name;
       currentWeather.temperature = Math.floor(resp.list[0].main.temp);
       currentWeather.windSpeed = resp.list[0].wind.speed;
@@ -29,7 +27,7 @@ function fiveDayThreeHourForecastData(lat, lon) {
         if (weather.dt_txt[12] == 0) {
           currentDayForecast.push({
             date: weather.dt_txt,
-            temperatura: Math.floor(weather.main.temp),
+            temperature: Math.floor(weather.main.temp),
             windSpeed: weather.wind.speed,
             description: weather.weather[0].description,
             icon: weather.weather[0].icon
@@ -38,7 +36,7 @@ function fiveDayThreeHourForecastData(lat, lon) {
         } else {
           currentDayForecast.push({
             date: weather.dt_txt,
-            temperatura: Math.floor(weather.main.temp),
+            temperature: Math.floor(weather.main.temp),
             windSpeed: weather.wind.speed,
             description: weather.weather[0].description,
             icon: weather.weather[0].icon
@@ -56,7 +54,7 @@ function fiveDayThreeHourForecastData(lat, lon) {
         if (weather.dt_txt[11] == 1 && weather.dt_txt[12] == 2) {
           fiveDaysForecast.push({
             date: weather.dt_txt,
-            temperatura: Math.floor(weather.main.temp),
+            temperature: Math.floor(weather.main.temp),
             windSpeed: weather.wind.speed,
             description: weather.weather[0].description,
             icon: weather.weather[0].icon
@@ -71,7 +69,7 @@ function fiveDayThreeHourForecastData(lat, lon) {
 }
 
 function myLocation() {
-  navigator.geolocation.getCurrentPosition(function (position) {
+  navigator.geolocation.getCurrentPosition(function(position) {
     fiveDayThreeHourForecastData(
       position.coords.latitude,
       position.coords.longitude
