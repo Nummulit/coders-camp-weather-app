@@ -27,6 +27,7 @@ function fiveDayThreeHourForecastData(lat, lon) {
         weatherEvery3Hours.push({
           date: resp.list[i].dt_txt,
           temperature: Math.floor(resp.list[i].main.temp),
+          windSpeed: resp.list[i].wind.speed,
           description: resp.list[i].weather[0].description,
           icon: resp.list[i].weather[0].icon
         });
@@ -43,7 +44,6 @@ function fiveDayThreeHourForecastData(lat, lon) {
           fiveDaysForecast.push({
             date: weather.dt_txt,
             temperature: Math.floor(weather.main.temp),
-            windSpeed: weather.wind.speed,
             description: weather.weather[0].description,
             icon: weather.weather[0].icon
           });
