@@ -4,10 +4,45 @@ let currentWeather = {
   temperature: 286.67,
   windSpeed: 1.81,
   description: 'clear sky',
-  icon: '01d'
-}
+  icon: '01d',
+  currentTimeInCity: 'Sun, 01 Dec 2019 16:55:00 GMT'
+};
 
 const fiveDaysForecast = [
+  {
+    date: '2017-02-16 12:00:00',
+    temperature: 286.67,
+    icon: '01d',
+    description: 'broken clouds'
+  },{
+    date: '2017-02-16 15:00:00',
+    temperature: 286.67,
+    icon: '02d',
+    description: 'clear sky'
+  },{
+    date: '2017-02-16 18:00:00',
+    temperature: 286.67,
+    icon: '03d',
+    description: 'broken clouds'
+  },{
+    date: '2017-02-16 21:00:00',
+    temperature: 286.67,
+    icon: '10d',
+    description: 'broken clouds'
+  },{
+    date: '2017-02-16 00:00:00',
+    temperature: 286.67,
+    icon: '11d',
+    description: 'broken clouds'
+  },{
+    date: '2017-02-16 03:00:00',
+    temperature: 286.67,
+    icon: '13d',
+    description: 'broken clouds'
+  }
+];
+
+const weatherEvery3Hours = [
   {
     date: '2017-02-16 12:00:00',
     temperature: 286.67,
@@ -57,6 +92,7 @@ const threeHoursWeatherContainer = document.querySelector('.today-hours');
 const weatherForFewDaysTemplate = document.querySelector('#weather-for-the-day');
 const weatherForFewDaysContainer = document.querySelector('.few-days');
 
+
 // First letter to uppercase function
 function jsUcfirst(string) 
 {
@@ -71,6 +107,8 @@ function currentWeatherToHtml(forecast) {
   currentWeatherHtml.querySelector('.city').textContent = forecast.cityName;
   currentWeatherHtml.querySelector('.temp').textContent = Math.floor(forecast.temperature - 273.15) + ' °C';
   currentWeatherHtml.querySelector('.state-weather').textContent = jsUcfirst(forecast.description);
+  const forecastDate = new Date(forecast.currentTimeInCity);
+  currentWeatherHtml.querySelector('.time').textContent = forecastDate.toLocaleTimeString();
   currentWeatherHtml.querySelector('.wind-speed').textContent = `${forecast.windSpeed} m/s`;
 
   return currentWeatherHtml;
@@ -84,10 +122,11 @@ currentWeatherContainer.appendChild(currentWeatherToHtml(currentWeather));
 function forecastToHtml(forecast) {
   const threeHoursWeatherHtml = document.importNode(threeHoursWeatherTemplate.content, true);
   const forecastDate = new Date(forecast.date);
-  threeHoursWeatherHtml.querySelector('.hour').textContent = /*jsUcfirst(forecastDate.toLocaleDateString(
-      'pl',{weekday: 'short'})) + ' ' +*/ forecastDate.toLocaleTimeString('pl',{minute: '2-digit', hour: '2-digit'});
+  threeHoursWeatherHtml.querySelector('.hour').textContent = jsUcfirst(forecastDate.toLocaleDateString(
+      'pl',{weekday: 'short'})) + ' ' + forecastDate.toLocaleTimeString('pl',{minute: '2-digit', hour: '2-digit'});
   threeHoursWeatherHtml.querySelector('.icon').src = `//openweathermap.org/img/wn/${forecast.icon}@2x.png`;
-  threeHoursWeatherHtml.querySelector('.temp').textContent = Math.floor(forecast.temperature - 273.15) + '°';
+  threeHoursWeatherHtml.querySelector('.temp').textContent = Math.floor(forecast.temperature - 273.15) + ' °C';
+  threeHoursWeatherHtml.querySelector('.wind-forecast').textContent = `${forecast.windSpeed} m/s`;
 
   return threeHoursWeatherHtml;
 }
@@ -96,21 +135,21 @@ function forecastsToHtml(forecasts) {
   return forecasts.map(forecast => forecastToHtml(forecast));
 }
 // Function call on first six elements and append all forecasts to container
-threeHoursWeatherContainer.append(...forecastsToHtml(fiveDaysForecast.slice(0, 6)));
+threeHoursWeatherContainer.append(...forecastsToHtml(weatherEvery3Hours.slice(0, 6)));
 
 
 
-// Cloning template from html and generate weather 1 day forecast to html
+// Cloning template from html and generate weather for 1 day forecast to html
 function weatherForFewDaysToHtml(forecast) {
-    const weatherForFewDaysHtml = document.importNode(weatherForFewDaysTemplate.content, true);
-    const day = new Date(forecast.date);
-    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    weatherForFewDaysHtml.querySelector('.day').innerHTML = days[day.getDay()];
-    weatherForFewDaysHtml.querySelector('.day-icon').src = `//openweathermap.org/img/wn/${forecast.icon}@2x.png`;
-    weatherForFewDaysHtml.querySelector('.day-desc').textContent = forecast.description;
-    weatherForFewDaysHtml.querySelector('.day-temp').textContent = Math.floor(forecast.temperature - 273.15) + '°';
-    
-    return weatherForFewDaysHtml;
+  const weatherForFewDaysHtml = document.importNode(weatherForFewDaysTemplate.content, true);
+  const day = new Date(forecast.date);
+  const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  weatherForFewDaysHtml.querySelector('.day').innerHTML = days[day.getDay()];
+  weatherForFewDaysHtml.querySelector('.day-icon').src = `//openweathermap.org/img/wn/${forecast.icon}@2x.png`;
+  weatherForFewDaysHtml.querySelector('.day-desc').textContent = forecast.description;
+  weatherForFewDaysHtml.querySelector('.day-temp').textContent = Math.floor(forecast.temperature - 273.15) + ' °C';
+  
+  return weatherForFewDaysHtml;
 }
 // Map method on forecasts
 function weathersForFewDaysToHtml(forecasts) {
