@@ -10,7 +10,13 @@
       <link rel="stylesheet" href="style.css" type="text/css">
   </head>
   <style>
-
+          .city{
+        font-size: large;
+        font-weight: 600;
+      }
+      .temp p{
+        font-size: x-large ;
+      }
   </style>
   <body>
           
@@ -33,8 +39,9 @@
           <!-- First template - current weather and wind-->
           <template id="current-weather">
             <div class="col-12 my-2 py-1 city"></div>
-            <div class="col-12 py-1 temp"><h1></h1></div>                   
-            <div class="col-12 my-2 py-1 state-weather"><h4></h4></div>
+            <div class="col-12 py-1 temp"></div>                   
+            <div class="col-12 my-2 py-1 state-weather"></div>
+            <p class="time"></p>
             <p class="col-12 text-center wind-p border-top my-2 pt-2">Wiatr</p>
             <div class="align-items-center justify-content-around col-12 pb-1 ">
             <p class="wind-speed"></p>
@@ -50,6 +57,7 @@
                <p class="hour"></p>
               <img src="" alt="icon" class="icon">
               <p class="temp"></p>
+              <p class="wind-forecast"></p>
             </div>
           </template>
         </div>
@@ -66,7 +74,17 @@
             </div>
           </template>
         </div>
+        <footer class="page-footer font-small blue">
 
+          <!--footer-->
+        <div class="footer-copyright text-center py-3 footer">
+          <p>The weather forecast is displayed in accordance with your local time. 
+             Please pay attention to it when you will watch the weather in another time zone.</p>
+        </div>
+         
+        
+        </footer>
+        
 
         <!-- Sunrise and sunset section -->
         <!-- <div class="row my-2 text-center sunRise">
