@@ -1,86 +1,86 @@
-// Fake API data for testing
-let currentWeather = {
-  cityName: 'Berlin',
-  temperature: 286.67,
-  windSpeed: 1.81,
-  description: 'clear sky',
-  icon: '01d',
-  currentTimeInCity: 'Sun, 01 Dec 2019 16:55:00 GMT'
-};
+// // Fake API data for testing
+// let currentWeather = {
+//   cityName: 'Berlin',
+//   temperature: 286.67,
+//   windSpeed: 1.81,
+//   description: 'clear sky',
+//   icon: '01d',
+//   currentTimeInCity: 'Sun, 01 Dec 2019 16:55:00 GMT'
+// };
 
-const fiveDaysForecast = [
-  {
-    date: '2017-02-16 12:00:00',
-    temperature: 286.67,
-    icon: '01d',
-    description: 'broken clouds'
-  },{
-    date: '2017-02-16 15:00:00',
-    temperature: 286.67,
-    icon: '02d',
-    description: 'clear sky'
-  },{
-    date: '2017-02-16 18:00:00',
-    temperature: 286.67,
-    icon: '03d',
-    description: 'broken clouds'
-  },{
-    date: '2017-02-16 21:00:00',
-    temperature: 286.67,
-    icon: '10d',
-    description: 'broken clouds'
-  },{
-    date: '2017-02-16 00:00:00',
-    temperature: 286.67,
-    icon: '11d',
-    description: 'broken clouds'
-  },{
-    date: '2017-02-16 03:00:00',
-    temperature: 286.67,
-    icon: '13d',
-    description: 'broken clouds'
-  }
-];
+// const fiveDaysForecast = [
+//   {
+//     date: '2017-02-16 12:00:00',
+//     temperature: 286.67,
+//     icon: '01d',
+//     description: 'broken clouds'
+//   },{
+//     date: '2017-02-16 15:00:00',
+//     temperature: 286.67,
+//     icon: '02d',
+//     description: 'clear sky'
+//   },{
+//     date: '2017-02-16 18:00:00',
+//     temperature: 286.67,
+//     icon: '03d',
+//     description: 'broken clouds'
+//   },{
+//     date: '2017-02-16 21:00:00',
+//     temperature: 286.67,
+//     icon: '10d',
+//     description: 'broken clouds'
+//   },{
+//     date: '2017-02-16 00:00:00',
+//     temperature: 286.67,
+//     icon: '11d',
+//     description: 'broken clouds'
+//   },{
+//     date: '2017-02-16 03:00:00',
+//     temperature: 286.67,
+//     icon: '13d',
+//     description: 'broken clouds'
+//   }
+// ];
 
-const weatherEvery3Hours = [
-  {
-    date: '2017-02-16 12:00:00',
-    temperature: 286.67,
-    windSpeed: 1.81,
-    icon: '01d',
-    description: 'broken clouds'
-  },{
-    date: '2017-02-16 15:00:00',
-    temperature: 286.67,
-    windSpeed: 1.81,
-    icon: '02d',
-    description: 'clear sky'
-  },{
-    date: '2017-02-16 18:00:00',
-    temperature: 286.67,
-    windSpeed: 1.81,
-    icon: '03d',
-    description: 'broken clouds'
-  },{
-    date: '2017-02-16 21:00:00',
-    temperature: 286.67,
-    windSpeed: 1.81,
-    icon: '10d',
-    description: 'broken clouds'
-  },{
-    date: '2017-02-16 00:00:00',
-    temperature: 286.67,
-    windSpeed: 1.81,
-    icon: '11d',
-    description: 'broken clouds'
-  },{
-    date: '2017-02-16 03:00:00',
-    temperature: 286.67,
-    windSpeed: 1.81,
-    icon: '13d',
-    description: 'broken clouds'
-  }
-];
+// const weatherEvery3Hours = [
+//   {
+//     date: '2017-02-16 12:00:00',
+//     temperature: 286.67,
+//     windSpeed: 1.81,
+//     icon: '01d',
+//     description: 'broken clouds'
+//   },{
+//     date: '2017-02-16 15:00:00',
+//     temperature: 286.67,
+//     windSpeed: 1.81,
+//     icon: '02d',
+//     description: 'clear sky'
+//   },{
+//     date: '2017-02-16 18:00:00',
+//     temperature: 286.67,
+//     windSpeed: 1.81,
+//     icon: '03d',
+//     description: 'broken clouds'
+//   },{
+//     date: '2017-02-16 21:00:00',
+//     temperature: 286.67,
+//     windSpeed: 1.81,
+//     icon: '10d',
+//     description: 'broken clouds'
+//   },{
+//     date: '2017-02-16 00:00:00',
+//     temperature: 286.67,
+//     windSpeed: 1.81,
+//     icon: '11d',
+//     description: 'broken clouds'
+//   },{
+//     date: '2017-02-16 03:00:00',
+//     temperature: 286.67,
+//     windSpeed: 1.81,
+//     icon: '13d',
+//     description: 'broken clouds'
+//   }
+// ];
 
 // Global variables
 const currentWeatherTemplate = document.querySelector('#current-weather');
