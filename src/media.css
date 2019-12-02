@@ -1,0 +1,117 @@
+    /*Change font and icon Size*/
+    @media (max-width: 345px){
+      .city{
+        font-size: large;
+        font-weight: 600;
+      }
+      .temp p{
+        font-size: x-large ;
+      }
+      .icon{
+        display: none;
+      }
+      .day-desc{
+        display: none;
+      }
+      body{
+        font-size: medium;
+      }
+      .icon{
+        height: 40px;
+        width: 40px;
+      }
+      .day-icon{
+        height: 50px;
+        width: 50px;
+      }
+      .hour, .wind-p
+      {
+        font-weight:100;
+        font-size: 15px;
+      }
+      .day-desc{
+        display: none;
+      }
+      .temp, .wind-speed{
+        font-weight:100;
+        font-size: 15px;
+      }
+      .footer p{
+        font-size: 10px;
+      }
+    }
+    @media (min-width: 346px)
+    {
+      .city{
+        font-size: x-large;
+        font-weight: 600;
+      }
+      body{
+        font-size: medium;
+      }
+      .icon{
+        height: 40px;
+        width: 40px;
+      }
+      .day-icon{
+        height: 50px;
+        width: 50px;
+      }
+      .hour, .wind-p
+      {
+        font-weight:100;
+        font-size: 15px;
+      }
+      .temp, .wind-speed{
+        font-weight:100;
+        font-size: 15px;
+      }
+      .footer p{
+        font-size: 12px;
+      }
+
+    }
+    @media (min-width: 476px)
+    {
+      body{
+        font-size: large;
+        background-color: wheat;
+      }
+      .icon{
+        height: 75px;
+        width: 75px;
+      }
+      .day-icon{
+        height: 75px;
+        width: 75px;
+      }
+      .hour, .wind-p
+      {
+        font-weight:600;
+        font-size: x-large;
+      }
+      .temp, .wind-speed{
+        font-weight:100;
+        font-size: 25px;
+      }
+    }
+    @media (min-width: 960px)
+    {
+      body{
+        font-size: x-large; 
+      }
+      .icon{
+        height: 100px;
+        width: 100px;
+      }
+      .day-icon{
+        height: 100px;
+        width: 100px;
+      }
+      .hour, .wind-p
+      {
+        font-weight:600;
+        font-size: xx-large;
+      }
+    }
+    /*///////////////////////////////////////////////////*/
