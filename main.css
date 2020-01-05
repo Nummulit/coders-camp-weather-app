@@ -1,0 +1,199 @@
+    html {
+        overflow-x: hidden;
+    }
+
+    body {
+        background-image: linear-gradient(to right, #005aa7, #00b4db);
+    }
+
+    .day-desc,
+    .day-temp,
+    .temp {
+        white-space: nowrap;
+    }
+
+    .weather-for-days * {
+        margin: 5px;
+    }
+
+    .btn {
+        padding: 3px;
+
+    }
+
+    .button:hover {
+        cursor: pointer;
+        background-color: #fafafa;
+    }
+
+    .form-control {
+        height: 40px;
+        width: 300px;
+    }
+
+    .suggestion-container {
+        position: relative;
+    }
+
+    .suggestions {
+        padding: 0;
+        background-color: rgba(255, 255, 255, 0.85);
+        border-radius: 5px;
+        position: absolute;
+        width: 300px;
+        top: 40px;
+        left: 0;
+        z-index: 1;
+    }
+
+    .suggestions li {
+        padding: 5px 10px;
+        font-size: 18px;
+        list-style: none;
+        text-align: left;
+    }
+
+    /*Change font and icon Size*/
+    @media (max-width: 345px) {
+        .city {
+            font-size: large;
+            font-weight: 600;
+        }
+
+        .temp p {
+            font-size: x-large;
+        }
+
+        .icon {
+            display: none;
+        }
+
+        .day-desc {
+            display: none;
+        }
+
+        body {
+            font-size: medium;
+        }
+
+        .icon {
+            height: 40px;
+            width: 40px;
+        }
+
+        .day-icon {
+            height: 50px;
+            width: 50px;
+        }
+
+        .hour,
+        .wind-p {
+            font-weight: 100;
+            font-size: 15px;
+        }
+
+        .day-desc {
+            display: none;
+        }
+
+        .temp,
+        .wind-speed {
+            font-weight: 100;
+            font-size: 15px;
+        }
+
+        .footer p {
+            font-size: 10px;
+        }
+    }
+
+    @media (min-width: 346px) {
+        .city {
+            font-size: x-large;
+            font-weight: 600;
+        }
+
+        body {
+            font-size: medium;
+        }
+
+        .icon {
+            height: 40px;
+            width: 40px;
+        }
+
+        .day-icon {
+            height: 50px;
+            width: 50px;
+        }
+
+        .hour,
+        .wind-p {
+            font-weight: 100;
+            font-size: 15px;
+        }
+
+        .temp,
+        .wind-speed {
+            font-weight: 100;
+            font-size: 15px;
+        }
+
+        .footer p {
+            font-size: 12px;
+        }
+
+    }
+
+    @media (min-width: 476px) {
+        body {
+            font-size: large;
+            background-color: wheat;
+        }
+
+        .icon {
+            height: 75px;
+            width: 75px;
+        }
+
+        .day-icon {
+            height: 75px;
+            width: 75px;
+        }
+
+        .hour,
+        .wind-p {
+            font-weight: 600;
+            font-size: x-large;
+        }
+
+        .temp,
+        .wind-speed {
+            font-weight: 100;
+            font-size: 25px;
+        }
+    }
+
+    @media (min-width: 960px) {
+        body {
+            font-size: x-large;
+        }
+
+        .icon {
+            height: 100px;
+            width: 100px;
+        }
+
+        .day-icon {
+            height: 100px;
+            width: 100px;
+        }
+
+        .hour,
+        .wind-p {
+            font-weight: 600;
+            font-size: xx-large;
+        }
+    }
+
+    /*///////////////////////////////////////////////////*/
